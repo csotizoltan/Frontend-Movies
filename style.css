@@ -1,0 +1,71 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #F5F5F5;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#title {
+    width: 800px;
+    background-color: #EBE8E6;
+    font-family: calibri;
+    font-size: 30px;
+    font-weight: 300;
+    color: brown;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 3px;
+    border-radius: 12px;
+    margin-left: 155px;
+    margin-top: 30px;
+    margin-bottom: 40px
+}
+
+#betolt {
+    width: 240px;
+    height: 40px;
+    background-color: rgb(0, 119, 255);
+    border-color: white;
+    color: white;
+    margin-left: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+#error {
+    color: red;
+}
+
+#filmLista {
+    /* color: black; */
+    margin-top: 30px;
+    margin-left: 20px;
+    line-height: 20px;
+}
+
+#filmAdatok {
+    display: none;
+    width: 370px;
+    height: 250px;
+    background-color: lightgray;
+    color: black;
+    margin-top: 70px;
+    margin-left: 40px;
+    line-height: 30px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+button {
+    width: 170px;
+    height: 35px;
+    background-color: lightcoral;
+    border-color: lightgray;
+    margin-top: 15px;
+    margin-left: 70px;
+    border-radius: 8px;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
