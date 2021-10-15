@@ -23,7 +23,7 @@ body {
     margin-bottom: 40px
 }
 
-#betolt {
+#btn_betolt {
     width: 240px;
     height: 40px;
     background-color: rgb(0, 119, 255);
@@ -48,7 +48,7 @@ body {
 #filmAdatok {
     display: none;
     width: 370px;
-    height: 250px;
+    /* height: 250px; */
     background-color: lightgray;
     color: black;
     margin-top: 70px;
