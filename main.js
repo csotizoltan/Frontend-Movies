@@ -58,7 +58,7 @@ function betolt() {
                             let movies = document.createElement("div");
                             movies.innerHTML = element.title + " (" + element.year + ")";
                             document.getElementById("filmLista").appendChild(movies);
-                        });           
+                        });
                     });
                 })
                 
@@ -113,7 +113,8 @@ function betolt() {
                     // reset esemény hatására elrejti a filmlistát és a film adatokat
                     document.getElementById("filmAdatok").style.display = "none";
                     document.getElementById("filmLista").style.display = "none";
-                    betolt();
+                    //betolt();
+                    location.reload(false);
                 });
 
                 // megjeleníti a film adatokat
