@@ -21,86 +21,103 @@ function betolt() {
             return a.year - b.year
         }).forEach(element => {
 
+            // Filmcímek és kiadás évének kiírása
             let movies = document.createElement("div");
             movies.innerHTML = element.title + " (" + element.year + ")";
             document.getElementById("filmLista").appendChild(movies);
 
+            
+            // Filmcím kattintási eseménye
             movies.addEventListener("click", (e) => {
                 console.log("Kattintva:" + element.title);
 
-                filmAdatok.innerHTML =  element.title + "<br>" 
-                                        + element.year + "<br>" 
-                                        + "<a href='adat.com'>" + element.cast + "</a>" + "<br>" 
-                                        + "<a href='adat.com'>" + element.genres + "</a>" + "<br>";
+                
+                // filmAdatok: Filmcím és kiadás évének kiírása
+                filmAdatok.innerHTML =  element.title + "<br>" + element.year + "<br>";
 
+                // filmAdatok: szereplők kiírása
+                element.cast.forEach(element => {
+                    let cast = document.createElement("a");
+                    cast.innerHTML += "<a href='#'>" + element + "</a>" + " ";
+                    document.getElementById("filmAdatok").appendChild(cast);
+
+                    cast.addEventListener("click", (e) => {
+                        console.log("Szereplőre kattintva: " + element);
+                        
+                        filmLista.innerHTML = "";
+                        e.preventDefault();
+        
+                        // szűrést végez a teljes filmlistán a adott szereplő neve alapján
+                        adat
+                        .filter(e => e.cast.includes(element))
+                        .sort((b, a) => {
+                            return a.year - b.year
+                        })
+                        // majd megjeleníti a szűrt film listát
+                        .forEach(element => {
+                            let movies = document.createElement("div");
+                            movies.innerHTML = element.title + " (" + element.year + ")";
+                            document.getElementById("filmLista").appendChild(movies);
+                        });           
+                    });
+                })
+                
+                
+                // filmAdatok: üres sor a szereplők után
+                let br = document.createElement("br");
+                br.innerHTML += "<a href='#'>" + element + "</a>" + " ";
+                document.getElementById("filmAdatok").appendChild(br);
+                
+                
+                // filmAdatok: műfaj kiírása
+                element.genres.forEach(element => {
+                    let genres = document.createElement("a");
+                    genres.innerHTML += "<a href='#'>" + element + "</a>" + " ";
+                    document.getElementById("filmAdatok").appendChild(genres);
+
+                    genres.addEventListener("click", (e) => {
+                        console.log("Műfajra kattintva: " + element);
+                        
+                        filmLista.innerHTML = "";
+                        e.preventDefault();
+        
+                        // szűrést végez a teljes filmlistán a adott műfaj alapján
+                        adat
+                        .filter(e => e.genres.includes(element))
+                        .sort((b, a) => {
+                            return a.year - b.year
+                        })
+                        // majd megjeleníti a szűrt film listát
+                        .forEach(element => {
+                            let movies = document.createElement("div");
+                            movies.innerHTML = element.title + " (" + element.year + ")";
+                            document.getElementById("filmLista").appendChild(movies);
+                        });           
+                    });
+                })
+                
+                // filmAdatok: üres sor a műfaj után
+                let br2 = document.createElement("br");
+                br2.innerHTML += "<a href='#'>" + element + "</a>" + " ";
+                document.getElementById("filmAdatok").appendChild(br2);
+
+
+                // filmAdatok: reset gomb megjelenítése
                 let btn_reset = document.createElement("button");
                 document.getElementById("filmAdatok").appendChild(btn_reset);
                 btn_reset.innerHTML = "reset";
+
                 btn_reset.addEventListener("click", () => {
                     console.log("Reset gombra kattintva");
+                    
+                    // reset esemény hatására elrejti a filmlistát és a film adatokat
                     document.getElementById("filmAdatok").style.display = "none";
                     document.getElementById("filmLista").style.display = "none";
                     betolt();
                 });
 
-                document.getElementsByTagName('a')[0].addEventListener('click', (e) => {
-                    e.preventDefault();
-                    let szereplo = element.cast;
-                    console.log("Szereplő: " + szereplo);
-
-                    let arrayOfSzereplo = szereplo.toString().split(',');
-
-                    //filmLista.innerHTML.textContent = ''
-                    filmLista.innerHTML = "";
-                    //document.getElementById("filmLista").style.fontSize  = "1.0em";
-
-                    
-
-                    adat
-                    .filter(e => e.cast.includes(arrayOfSzereplo[0]))
-                    .sort((b, a) => {
-                        return a.year - b.year
-                    })
-
-                    /*
-                    .filter(e => e.cast.includes((e) => {
-                        for (let i = 0; i < arrayOfSzereplo.length; i++) {
-                            arrayOfSzereplo[i];
-                        }
-                    }))
-                    */
-
-                    
-                    .forEach(element => {
-                        let movies = document.createElement("div");
-                        movies.innerHTML = element.title + " (" + element.year + ")";
-                        document.getElementById("filmLista").appendChild(movies);
-                    });
-                });
-
-                document.getElementsByTagName('a')[1].addEventListener('click', (e) => {
-                    let mufaj = element.genres;
-                    console.log("Műfaj: " + mufaj);
-
-                    let arrayOfMufaj = mufaj.toString().split(',');
-
-                    filmLista.innerHTML = "";
-
-                    e.preventDefault();
-
-                    adat
-                    .filter(e => e.genres.includes(arrayOfMufaj[0]))
-                    //.filter(e => e.genres.includes(mufaj.toString()))
-                    .sort((b, a) => {
-                        return a.year - b.year
-                    })
-                    .forEach(element => {
-                        let movies = document.createElement("div");
-                        movies.innerHTML = element.title + " (" + element.year + ")";
-                        document.getElementById("filmLista").appendChild(movies);
-                    });
-                    
-                });
+                // megjeleníti a film adatokat
+                //document.getElementById("filmLista").style.display = "block";
                 document.getElementById("filmAdatok").style.display = "block";
 
             });
@@ -110,6 +127,7 @@ function betolt() {
         document.getElementById("error").innerHTML = e.message;
     }).finally(() => {
         console.log("Betöltés befejezve");
+        // megjeleníti a filmlistát
         document.getElementById("filmLista").style.display = "block";
     })
 };

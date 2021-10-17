@@ -51,11 +51,12 @@ body {
     /* height: 250px; */
     background-color: lightgray;
     color: black;
-    margin-top: 70px;
-    margin-left: 40px;
     line-height: 30px;
     padding: 10px;
     border-radius: 8px;
+    position: fixed;
+    top: 30%;
+    right: 15%;
 }
 
 button {
